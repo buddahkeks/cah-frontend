@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+@import url('https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe');
+
+.root-table {
+  width: 100%;
+  border-spacing: 15px;
+
+  th {
+    font-size: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid #cecece;
+  }
+
+  td {
+    vertical-align: top;
+    width: 50%;
+  }
+
+  .you-player {
+    color: #FF9090;
+  }
+
+  table {
+    border-spacing: 15px 0;
+
+    td {
+      width: auto;
+    }
+
+    .icon-td {
+      text-align: center;
+    }
+  }
+
+  .last-tr {
+    td {
+      text-align: left;
+      transition: .5s ease;
+
+      fa-icon {
+        background-color: #363636;
+        color: #eee;
+        padding: 7.5px 15px;
+        border-radius: 2.5px;
+        font-size: 12px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
+    }
+  }
+
+  .question-card {
+    background-color: #363636;
+    color: #eee;
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 5px 0;
+
+    .question-blank {
+      background-color: #eee;
+      color: #363636;
+      padding: 2.5px 10px;
+      line-height: 30px;
+      border-radius: 2.5px;
+      margin-right: 5px;
+    }
+  }
+
+  .answer-card {
+    background-color: #eee;
+    color: #363636;
+    display: inline-block;
+    margin: 5px;
+    padding: 15px;
+    border-radius: 5px 0;
+    transition: .5s ease;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .85;
+      
+      .remove-icon {
+        display: inline;
+      }
+    }
+
+    &:focus {
+      outline: none;
+      cursor: pointer;
+    }
+
+    .remove-icon {
+      margin: 0 0 0 5px;
+      font-size: 13px;
+      display: none;
+      transition: .5s ease;
+
+      &:hover {
+        display: inline;
+      }
+    }
+  }
+
+  .turned-over {
+    span {
+      font-family: 'ZCOOL KuaiLe';
+      font-size: 25px;
+      font-weight: bold;
+    }
+  }
+}

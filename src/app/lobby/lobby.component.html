@@ -1,0 +1,47 @@
+<table>
+  <tr>
+    <td>
+      <h3>Players</h3>
+      <ul class="player-list">
+        <li *ngFor="let p of players">{{p}}</li>
+      </ul>
+    </td>
+    <td>
+      <h3>Game Info</h3>
+      <table *ngIf="gameInfo">
+        <tr>
+          <td>Token: </td>
+          <td>{{token}}</td>
+        </tr>
+        <tr>
+          <td>Question pack(s): </td>
+          <td>
+            <ul>
+              <li *ngFor="let qp of gameInfo.q_packs">
+                {{qp}}
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Answer pack(s): </td>
+          <td>
+            <ul>
+              <li *ngFor="let ap of gameInfo.a_packs">
+                {{ap}}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="sub-td">
+      <fa-icon [icon]="faArrowLeft" 
+        (click)="leaveGame()"></fa-icon>
+      <input type="button" (click)="startGame()"
+        value="Start Game!" />
+    </td>
+  </tr>
+</table>

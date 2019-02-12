@@ -1,0 +1,79 @@
+<table class="root-table">
+  <tr class="last-tr">
+    <td colspan="2">
+      <fa-icon [icon]="faArrowLeft"
+        title="Leave game"
+        (click)="leaveGame()">
+      </fa-icon>
+    </td>
+  </tr>
+  <tr>
+    <th colspan="2">
+      Round <span *ngIf="round">{{round.id+1}}</span>
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <div class="question-card" *ngIf="question" [innerHTML]="question"></div>
+    </td>
+    <td>
+      <table *ngIf="round">
+        <tr *ngFor="let p of players"
+          [class.you-player]="p.username==username">
+          <td class="icon-td">
+            <fa-icon *ngIf="p.username==round.czar" [icon]="faCrown"></fa-icon>
+            <fa-icon *ngIf="p.username!=round.czar&&
+              !hasAnswered(p.username)" [icon]="faCommentDots"></fa-icon>
+            <fa-icon *ngIf="p.username!=round.czar&&
+              hasAnswered(p.username)" [icon]="faCheck"></fa-icon>
+          </td>
+          <td>
+            {{p.username}}
+          </td>
+          <td>
+            {{p.score}}
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <tr *ngIf="round&&username!=round.czar&&!allAnswers()">
+    <td colspan="2">
+      <div class="answer-card" 
+        *ngFor="let ans of answerCards; let i = index">
+        <span
+          (click)="answer(ans)">
+          {{ans}}
+        </span>
+        <fa-icon [icon]="faTimesCircle" 
+          class="remove-icon"
+          [attr.i]="i"
+          (click)="removeCard($event.target)"></fa-icon>
+      </div>
+    </td>
+  </tr>
+  <tr *ngIf="round&&username==round.czar&&allAnswers()">
+    <td colspan="2">
+      <div class="answer-card" 
+        *ngFor="let ans of round.answers; let i = index" 
+        [attr.i]="i" 
+        [class.turned-over]="!turnedCards.includes(i)"
+        (click)="turnCard($event.target)">
+        <span [attr.i]="i" *ngIf="!turnedCards.includes(i)">CAH</span>
+        <span [attr.i]="i" *ngIf="turnedCards.includes(i)" 
+          [innerHTML]="ans.content.join('<br/>')">
+        </span>
+      </div>
+    </td>
+  </tr>
+  <tr *ngIf="round&&username!=round.czar&&allAnswers()">
+    <td colspan="2">
+      <div class="answer-card" *ngFor="let ans of round.answers; let i = index" [attr.i]="i" [class.turned-over]="!ans.turned">
+        <span *ngIf="!ans.turned">CAH</span>
+        <span *ngIf="ans.turned" [innerHTML]="ans.content.join('<br/>')">
+        </span>
+      </div>
+    </td>
+  </tr>
+</table>

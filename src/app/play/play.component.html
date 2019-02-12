@@ -1,0 +1,33 @@
+<table *ngIf="q_packs && a_packs">
+  <tr>
+    <td>
+      <h3>Start a Game</h3>
+      <div class="div-start">
+        <label>Username: <input type="text" id="uname-in" placeholder="..." /></label>
+        <label>Question Packs: <select *ngIf="q_packs" id="qp-in">
+          <option *ngFor="let qp of q_packs" 
+            [value]="qp">{{qp}}</option>
+        </select></label>
+        <label>Answer Packs: <select *ngIf="a_packs" id="ap-in">
+          <option *ngFor="let ap of a_packs"
+            [value]="ap">{{ap}}</option>
+        </select></label>
+        <label><input type="submit" id="sub-start" value="Start" (click)="startGame()" /></label>
+      </div>
+    </td>
+    <td>
+      <h3>Join a Game</h3>
+      <div class="div-join">
+        <label>Token: <input type="text" id="token-in" placeholder="..." /></label>
+        <label>Username: <input type="text" id="join-uname-in" placeholder="..." /></label>
+        <label><input type="submit" id="sub-join" value="Join" (click)="joinGame()" /></label>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" id="error-out">
+      <div id="error-msg" 
+        [@errorOutTrigger]="errorState"></div>
+    </td>
+  </tr>
+</table>

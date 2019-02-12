@@ -1,0 +1,70 @@
+table {
+    width: 100%;
+    border-spacing: 25px;
+
+    .player-list {
+        list-style-type: circle;
+    }
+
+    td {
+        vertical-align: top;
+        width: 50%;
+
+        table {
+            border-spacing: 0;
+        }
+
+        ul {
+            margin: 0;
+        }
+    }
+
+    .sub-td {
+        text-align: center;
+        padding-top: 25px;
+
+        fa-icon {
+            margin-right: 15px;
+            padding: 10px 25px;
+            border: 1.5px solid rgba(0, 0, 0, 0);
+            border-radius: 2.5px;
+            background-color: #363636;
+            color: #eee;
+            font-size: 13px;
+
+            transition: .5s ease;
+
+            &:hover {
+                cursor: pointer;
+                border: 1.5px solid #363636;
+                color: #363636;
+                background-color: #fff;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        input {
+            background-color: #363636;
+            color: #eee;
+            padding: 10px 25px;
+            border-radius: 2.5px;
+            transition: .5s ease;
+
+            border: 1.5px solid rgba(0, 0, 0, 0);
+
+            &:hover {
+                cursor: pointer;
+                border: 1.5px solid #363636;
+                color: #363636;
+                background-color: #fff;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
