@@ -1,9 +1,7 @@
 <table class="root-table">
   <tr class="last-tr">
     <td colspan="2">
-      <fa-icon [icon]="faArrowLeft"
-        title="Leave game"
-        (click)="leaveGame()">
+      <fa-icon [icon]="faArrowLeft" title="Leave game" (click)="leaveGame()">
       </fa-icon>
     </td>
   </tr>
@@ -14,12 +12,18 @@
   </tr>
   <tr>
     <td>
-      <div class="question-card" *ngIf="question" [innerHTML]="question"></div>
+      <div class="question-card" *ngIf="question" 
+        [innerHTML]="question"></div>
+      <div *ngIf="round&&username==round.czar"
+        class="question-skip"
+        (click)="skipQuestion()"
+        title="Skip this question">
+        <fa-icon [icon]="faForward"></fa-icon>
+      </div>
     </td>
     <td>
       <table *ngIf="round">
-        <tr *ngFor="let p of players"
-          [class.you-player]="p.username==username">
+        <tr *ngFor="let p of players" [class.you-player]="p.username==username">
           <td class="icon-td">
             <fa-icon *ngIf="p.username==round.czar" [icon]="faCrown"></fa-icon>
             <fa-icon *ngIf="p.username!=round.czar&&
@@ -41,28 +45,35 @@
   <tr *ngIf="round&&username!=round.czar&&!allAnswers()">
     <td colspan="2">
       <div class="answer-card" 
-        *ngFor="let ans of answerCards; let i = index">
-        <span
-          (click)="answer(ans)">
-          {{ans}}
-        </span>
-        <fa-icon [icon]="faTimesCircle" 
-          class="remove-icon"
-          [attr.i]="i"
-          (click)="removeCard($event.target)"></fa-icon>
+        *ngFor="let ans of answerCards; let i = index" 
+        [class.used-card]="ans.used">
+        <section *ngIf="!ans.used">
+          <span (click)="answer(ans.content)">
+            {{ans.content}}
+          </span>
+          <fa-icon [icon]="faTimesCircle" 
+            class="remove-icon" [attr.i]="i" 
+            (click)="removeCard($event.target)"></fa-icon>
+        </section>
+        <section *ngIf="ans.used">
+          <span>
+            {{ans.content}}
+          </span>
+        </section>
+      </div>
+      <div class="answer-card input-answer-card">
+        <input type="text" #selfWritten 
+          (keyup.enter)="writeCard(selfWritten.value); selfWritten.value=''"
+          placeholder="Something ... " />
       </div>
     </td>
   </tr>
   <tr *ngIf="round&&username==round.czar&&allAnswers()">
     <td colspan="2">
-      <div class="answer-card" 
-        *ngFor="let ans of round.answers; let i = index" 
-        [attr.i]="i" 
-        [class.turned-over]="!turnedCards.includes(i)"
+      <div class="answer-card" *ngFor="let ans of round.answers; let i = index" [attr.i]="i" [class.turned-over]="!turnedCards.includes(i)"
         (click)="turnCard($event.target)">
         <span [attr.i]="i" *ngIf="!turnedCards.includes(i)">CAH</span>
-        <span [attr.i]="i" *ngIf="turnedCards.includes(i)" 
-          [innerHTML]="ans.content.join('<br/>')">
+        <span [attr.i]="i" *ngIf="turnedCards.includes(i)" [innerHTML]="ans.content.join('<br/>')">
         </span>
       </div>
     </td>

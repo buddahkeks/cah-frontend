@@ -104,6 +104,38 @@
     }
   }
 
+  .question-skip {
+    max-width: 300px;
+    padding: 5px 0;
+
+    &:hover {
+      opacity: .8;
+      cursor: pointer;
+    }
+  }
+
+  .input-answer-card {
+    padding: 12.5px 10px;
+
+    input {
+      padding: 5px 15px;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .used-card {
+    opacity: .6;
+
+    &:hover {
+      cursor: not-allowed;
+      opacity: .6;
+    }
+  }
+
   .turned-over {
     span {
       font-family: 'ZCOOL KuaiLe';

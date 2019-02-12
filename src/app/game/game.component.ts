@@ -3,7 +3,7 @@ import { CahService } from '../cah.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { faCrown, faCheck, faCommentDots, faArrowLeft,
-  faTimesCircle }
+  faTimesCircle, faForward }
   from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -29,6 +29,7 @@ export class GameComponent implements OnInit {
   faCommentDots = faCommentDots;
   faArrowLeft = faArrowLeft;
   faTimesCircle = faTimesCircle;
+  faForward = faForward;
 
   constructor(
     private cahService: CahService,
@@ -197,5 +198,14 @@ export class GameComponent implements OnInit {
 
     this.cahService.removeCard(this.token, 
       +el.getAttribute('i'));
+  }
+
+  writeCard(c) {
+    this.cahService.addAnswer(this.token, 
+      this.username, c, () => {});
+  }
+
+  skipQuestion() {
+    this.cahService.skipQuestion(this.token);
   }
 }

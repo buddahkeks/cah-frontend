@@ -282,6 +282,16 @@ export class CahService {
         });
       });
   }
+  public skipQuestion(token: string, callback?) {
+    this.xHttpRequest('POST', 
+      `${conf.server_addr}/api/play/skip-question/${token}`,
+      res => {
+        this.handleError(res, (err, res) => {
+          if (err) throw err;
+          if (callback) callback(res);
+        });
+      });
+  }
   public addAnswer(token: string, username: string,
     answer: string, callback?) {
     this.xHttpRequest('POST',
